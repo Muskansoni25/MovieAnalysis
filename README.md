@@ -15,6 +15,7 @@ It answers various questions such as
 
 
 #what is the most frequent genre of movies released on netflix?
+
 ![image](https://github.com/user-attachments/assets/31c6f17e-fc53-4886-8fe7-8a7d275fd889)
 
 #which has the hisghest votes in vote avg column?
