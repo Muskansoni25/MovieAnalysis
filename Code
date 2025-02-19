@@ -1,0 +1,100 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+________________________________________________________
+df = pd.read_csv('PATH', lineterminator='\n'
+________________________________________________________
+df.head()
+________________________________________________________
+df.info()
+________________________________________________________
+df['Genre'].head()
+________________________________________________________
+df.duplicated().sum()
+________________________________________________________
+df.describe()
+________________________________________________________
+df.head()
+________________________________________________________
+df['Release_Date'] = pd.to_datetime(df['Release_Date'])
+print(df['Release_Date'].dtype)
+________________________________________________________
+df['Release_Date'] = df['Release_Date'].dt.year
+df['Release_Date'].dtypes
+________________________________________________________
+df.head()
+________________________________________________________
+cols = ['Overview', 'Original_Language', 'Poster_Url']
+________________________________________________________
+df.drop(cols, axis=1, inplace=True)
+df.columns
+________________________________________________________
+df.head()
+________________________________________________________
+def catigorize_col(df, col, labels):
+    edges = [df[col].describe()['min'],
+             df[col].describe()['25%'],
+             df[col].describe()['50%'],
+             df[col].describe()['75%'],
+             df[col].describe()['max']]
+    df[col] = pd.cut(df[col], edges, labels=labels, duplicates = 'drop')
+    return df
+________________________________________________________
+labels = ['not_popular', 'below_avg', 'average', 'popular']
+catigorize_col(df, 'Vote_Average', labels)
+df['Vote_Average'].unique()
+________________________________________________________
+df.head()
+________________________________________________________
+df['Vote_Average'].value_counts()
+________________________________________________________
+df.dropna(inplace = True)
+df.isna().sum()
+________________________________________________________
+df.head()
+________________________________________________________
+df['Genre'] = df['Genre'].astype(str).str.split(', ')
+df = df.explode('Genre').reset_index(drop=True)
+df.head()
+________________________________________________________
+df ['Genre'] = df['Genre'].astype('category')
+df['Genre'].dtypes
+________________________________________________________
+df.info()
+________________________________________________________
+df.nunique()
+________________________________________________________
+df.head()
+________________________________________________________
+sns.set_style('whitegrid')
+________________________________________________________
+df['Genre'].describe()
+________________________________________________________
+sns.catplot(y = 'Genre', data = df, kind = 'count',
+            order = df['Genre'].value_counts().index,
+            color = '#4287f5')
+plt.title('Number of Movies per Genre')
+plt.show()
+________________________________________________________
+df.head()
+________________________________________________________
+#which has the hisghest votes in vote avg column?
+sns.catplot(y = 'Vote_Average', data = df, kind = 'count',
+            order = df['Vote_Average'].value_counts().index,
+            palette = 'Blues')
+plt.title('Number of Movies per Vote Average')
+plt.show()
+________________________________________________________
+#what movie got the highest popularity? what is it's genre?
+df[df['Popularity'] == df['Popularity'].max()]
+________________________________________________________
+#what movie got the lowest popularity? what is it's genre?
+df[df['Popularity'] == df['Popularity'].min()]
+________________________________________________________
+#which year has th emost filmmed movies?
+df['Release_Date'].hist()
+plt.title('Release Date Column Distribution')
+
+
+
