@@ -12,6 +12,8 @@ Matplotlib: A plotting library for creating static, animated, and interactive vi
 Seaborn: A statistical data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
 
 It answers various questions such as 
+
+
 #what is the most frequent genre of movies released on netflix?
 ![image](https://github.com/user-attachments/assets/31c6f17e-fc53-4886-8fe7-8a7d275fd889)
 
